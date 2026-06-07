@@ -76,7 +76,6 @@
 
    require_once ("core.php");
    require_once ("maia_db.php");
-   require_once ("Mail/mimeDecode.php");  // PEAR::Mail::mimeDecode.php
    require_once 'HTMLPurifier.auto.php';
 
 
@@ -102,7 +101,7 @@
       switch ($primary) {
 
          case "multipart":
-            if (!array_key_exists('parts', $structure)) {
+            if (!property_exists($structure, 'parts')) {
                   $ret = "[" . $lang['text_invalid'] . "]<br>";
                   break;
             }
@@ -279,7 +278,7 @@
       or default to iso-8859-1
     */
     function get_charset($structure) {
-      if ($structure->ctype_parameters && array_key_exists('charset', $structure->ctype_parameters )) {
+      if (property_exists($structure, 'ctype_parameters') && array_key_exists('charset', $structure->ctype_parameters )) {
         return $structure->ctype_parameters['charset'];
       } else {
         return "iso-8859-1"; //arbitrary default charset...

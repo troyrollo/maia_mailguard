@@ -9,12 +9,14 @@
     <td><span>{$from}</span><br><a class="wblist_link" href="#" onclick="javascript:wblistAction($(this).siblings('span').text(),'addblock'); return false;">{$lang.link_blacklist}</a> | <a class="wblist_link" href="#" onclick="javascript:wblistAction($(this).siblings('span').text(),'addallow'); return false;">{$lang.link_whitelist}</a></td>
   </tr>
   {/foreach}
-  {foreach from=$headers.to item=to}
-  <tr>
-    <td class="mailheader">To:</font></td>
-    <td>{$to}</td>
-  </tr>
-  {/foreach}
+  {if isset($headers.to)}
+    {foreach from=$headers.to item=to}
+    <tr>
+      <td class="mailheader">To:</font></td>
+      <td>{$to}</td>
+    </tr>
+    {/foreach}
+  {/if}
   {foreach from=$headers.subject item=subject}
   <tr>
     <td class="mailheader">Subject:</font></td>
