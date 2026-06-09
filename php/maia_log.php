@@ -84,7 +84,7 @@
 	if (!$loglevel) $loglevel = LOG_ERR;
 	if (!$debuglevel) $debuglevel = LOG_ERR;
 
-	$syslog = Log::singleton('error_log', PEAR_LOG_TYPE_SYSTEM, 'maia','',$loglevel);
+	$syslog = Log::singleton('error_log', PEAR_LOG_TYPE_SYSTEM, 'maia',[], $loglevel);
     if ($debug_popup) {
  	  $debugwindow = Log::singleton('win', 'MaiaErrors', 'maia', array('title' => 'Maia Debug Window'), $debuglevel);
     }

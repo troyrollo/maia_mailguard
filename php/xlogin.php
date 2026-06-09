@@ -158,16 +158,16 @@
        isset($_GET["action"])) {
       //we are not entering by way of login form, but by way of special token.
       $token = trim($_GET['token']);
-      $user_token = trim($_GET['user_token']);
       $maia_user_id = trim($_GET['id']);
       $euid = trim($_GET['euid']);
       $action = trim($_GET['action']);
 
-      if ($action == "view.php" || $action == "rescue.php") {
+      if (isset($_GET["user_token"]) && ($action == "view.php" || $action == "rescue.php")) {
           $select = "SELECT recipient_id FROM maia_mail_recipients " .
                     "WHERE recipient_id=? " .
                     "AND token=?";
 
+          $user_token = trim($_GET['user_token']);
           $sth = $dbh->prepare($select);
           $res = $sth->execute(array($euid,$token));
           if (PEAR::isError($sth)) {

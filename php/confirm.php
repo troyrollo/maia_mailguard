@@ -108,7 +108,7 @@
     require_once ("./locale/$display_language/quarantine.php");
     require_once ("./locale/$display_language/reportspam.php");
 
-    if ($_GET['manage'] == 'true') {
+    if (isset($_GET['manage']) && $_GET['manage'] == 'true') {
         header("Location: welcome.php");
         exit;
     }
@@ -163,7 +163,7 @@
             $message .= sprintf($lang['text_spam_confirmed'], $confirmed) . ".<br>";
         }
       }
-      if ($_GET["report_virus"]) {
+      if (isset($_GET["report_virus"]) && $_GET["report_virus"]) {
         # Viruses
     	$deleted = 0;
         $select = "SELECT maia_mail.id " .
@@ -184,7 +184,7 @@
             $message .= sprintf($lang['text_viruses_deleted'], $deleted) . ".<br>";
         }
       }
-      if ($_GET["report_attachment"]) {
+      if (isset($_GET["report_attachment"]) &&  $_GET["report_attachment"]) {
         # Banned Attachments
     	$deleted = 0;
         $select = "SELECT maia_mail.id " .
@@ -205,7 +205,7 @@
             $message .= sprintf($lang['text_attachments_deleted'], $deleted) . ".<br>";
         }
       }
-      if ($_GET["report_header"]) {
+      if (isset($_GET["report_header"]) && $_GET["report_header"]) {
         # Invalid Headers
     	$deleted = 0;
         $select = "SELECT maia_mail.id " .
